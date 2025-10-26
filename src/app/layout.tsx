@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 
-const spaceGrotesk = Space_Grotesk({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
-  variable: '--font-space-grotesk',
+  variable: '--font-plus-jakarta',
 })
 
 export const metadata: Metadata = {
-  title: 'Atomic Software Studio - Building the Future with Intelligent Software',
+  title: 'Atomic Software Studio',
   description: 'We create innovative, automated solutions to propel your business into the next digital era.',
 }
 
@@ -26,7 +26,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${spaceGrotesk.variable} bg-background-dark font-display text-white`}>
+      <body className={`${plusJakarta.variable} bg-background-dark font-display text-white`}>
         {children}
       </body>
     </html>

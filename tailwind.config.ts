@@ -15,7 +15,7 @@ const config: Config = {
         'background-dark': '#101c22',
       },
       fontFamily: {
-        'display': ['var(--font-space-grotesk)', 'sans-serif'],
+          display: ['var(--font-plus-jakarta)', 'sans-serif'],
       },
       borderRadius: {
         'DEFAULT': '0.25rem',
