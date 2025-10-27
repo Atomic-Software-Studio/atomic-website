@@ -40,9 +40,12 @@ export default function Services() {
             key={index}
             className="group flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[.03] p-6 transition-all duration-300 ease-in-out hover:border-primary/50 hover:bg-white/[.05]"
           >
-            <span className="material-symbols-outlined text-primary text-4xl transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110">
-              {service.icon}
-            </span>
+            <div className="flex items-center gap-4">
+              <span className="material-symbols-outlined text-primary text-4xl transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
+                {service.icon}
+              </span>
+              <div className="flex-1 h-[2px] bg-primary"></div>
+            </div>
             <div className="flex flex-col gap-2">
               <h3 className="text-white text-xl font-bold leading-tight">
                 {service.title}
