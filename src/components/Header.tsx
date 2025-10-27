@@ -20,20 +20,20 @@ export default function Header() {
       <div className="hidden md:flex flex-1 justify-end gap-8">
         <div className="flex items-center gap-9">
           <a className="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">
-            Home
+            Inicio
           </a>
           <a className="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">
-            Services
+            Servicios
           </a>
           <a className="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">
-            Projects
+            Proyectos
           </a>
           <a className="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">
-            Contact
+            Contacto
           </a>
         </div>
         <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors">
-          <span className="truncate">Let&apos;s Build Something</span>
+          <span className="truncate">Construyamos algo</span>
         </button>
       </div>
       

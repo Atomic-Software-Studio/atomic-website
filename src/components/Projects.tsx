@@ -19,7 +19,7 @@ export default function Projects() {
   return (
     <section className="flex flex-col gap-4">
       <h2 className="text-white text-3xl font-bold leading-tight tracking-tighter px-4 pb-3 pt-5 text-center">
-        Featured Projects
+        Proyectos destacados
       </h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">

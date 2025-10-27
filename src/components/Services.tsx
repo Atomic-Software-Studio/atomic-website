@@ -3,22 +3,22 @@ export default function Services() {
     {
       icon: 'smart_toy',
       title: 'AI Chatbots & Automation',
-      description: 'Develop intelligent conversational AI and automate business processes for efficiency.'
+      description: 'Diseñamos asistentes virtuales y flujos automatizados que optimizan tus procesos y mejoran la experiencia de tus clientes.'
     },
     {
       icon: 'code_blocks',
       title: 'Web Development',
-      description: 'Craft modern, responsive, and scalable web applications and platforms.'
+      description: 'Creamos sitios y aplicaciones web potentes, modernos y personalizados para impulsar tu presencia digital.'
     },
     {
       icon: 'sync_alt',
       title: 'Integrations & APIs',
-      description: 'Seamlessly connect disparate systems and build robust APIs for enhanced functionality.'
+      description: 'Conectamos tus sistemas, plataformas y herramientas para lograr ecosistemas digitales fluidos y eficientes.'
     },
     {
       icon: 'cloud_upload',
       title: 'Cloud Solutions',
-      description: 'Design, deploy, and manage scalable cloud infrastructure and services.'
+      description: 'Desplegamos y gestionamos soluciones en la nube seguras, escalables y listas para crecer con tu negocio.'
     }
   ]
 
@@ -26,11 +26,11 @@ export default function Services() {
     <section className="flex flex-col gap-8">
       <div className="text-center px-4">
         <h2 className="text-white text-3xl font-bold leading-tight tracking-tighter">
-          Our Services
+          Nuestros servicios
         </h2>
         <p className="text-white/70 mt-2 max-w-2xl mx-auto">
-          We specialize in creating bespoke software solutions that are intelligent, efficient, and scalable. 
-          Explore our core services designed to innovate and elevate your business.
+          Desarrollamos tecnología que piensa, actúa y evoluciona contigo.
+          Descubre cómo nuestras soluciones impulsan tu negocio hacia el futuro.
         </p>
       </div>
       

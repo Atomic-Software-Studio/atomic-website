@@ -30,7 +30,7 @@ export default function Hero() {
               />
             </div>
             <p className="text-white/80 text-lg font-normal leading-normal @[480px]:text-xl md:text-lg transition-all duration-500 group-hover/hero:text-white">
-              We create innovative, automated solutions to propel your business into the next digital era.
+              Creamos soluciones inteligentes y automatizadas que impulsan tu negocio hacia el futuro digital.
             </p>
           </div>
         </div>

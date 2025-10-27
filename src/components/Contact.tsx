@@ -11,10 +11,10 @@ export default function Contact() {
     <section className="flex flex-col gap-8 p-4">
       <div className="text-center">
         <h2 className="text-white text-3xl font-bold leading-tight tracking-tighter">
-          Let&apos;s Create Together
+          Construyamos algo juntos
         </h2>
         <p className="text-white/70 mt-2">
-          Have an idea? Let&apos;s talk about how we can bring it to life.
+          ¿Tienes una idea? Hablemos sobre cómo traerla a la realidad y hacerla despegar 🚀
         </p>
       </div>
       
@@ -26,30 +26,30 @@ export default function Contact() {
           <div className="flex flex-col sm:flex-row gap-4">
             <input
               className="w-full bg-background-dark border-white/20 rounded-md focus:ring-primary focus:border-primary transition-colors"
-              placeholder="Your Name"
+              placeholder="Nombre"
               type="text"
             />
             <input
               className="w-full bg-background-dark border-white/20 rounded-md focus:ring-primary focus:border-primary transition-colors"
-              placeholder="Your Email"
+              placeholder="Email"
               type="email"
             />
           </div>
           <textarea
             className="w-full bg-background-dark border-white/20 rounded-md focus:ring-primary focus:border-primary transition-colors"
-            placeholder="Your Message"
+            placeholder="Mensaje"
             rows={5}
           />
           <button
             className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors w-full sm:w-auto"
             type="submit"
           >
-            <span className="truncate">Send Message</span>
+            <span className="truncate">Enviar mensaje</span>
           </button>
         </form>
         
         <div className="flex flex-col justify-center gap-4 text-center md:text-left">
-          <h3 className="text-xl font-bold">Connect with us</h3>
+          <h3 className="text-xl font-bold">Conecta con nosotros</h3>
           <div className="flex justify-center md:justify-start gap-4">
             <a 
               className="text-white/70 hover:text-primary transition-colors" 
