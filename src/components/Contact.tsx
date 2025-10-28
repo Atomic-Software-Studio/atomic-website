@@ -53,7 +53,7 @@ export default function Contact() {
           <div className="flex justify-center md:justify-start gap-4">
             <a 
               className="text-white/70 hover:text-primary transition-colors" 
-              href="#"
+              href="https://github.com/Atomic-Software-Studio"
               aria-label="GitHub"
             >
               <svg 
@@ -93,7 +93,7 @@ export default function Contact() {
             </a>
             <a 
               className="text-white/70 hover:text-primary transition-colors" 
-              href="#"
+              href="https://www.instagram.com/atomic.software"
               aria-label="Instagram"
             >
               <svg 
