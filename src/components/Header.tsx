@@ -42,9 +42,18 @@ export default function Header() {
             <a className="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#projects">
               Proyectos
             </a>
-            <a className="text-white/80 hover:text-white transition-colors text-sm font-medium leading-normal" href="#">
-              Blog
-            </a>
+            <a 
+                className="block rounded-md text-white/90 hover:text-white hover:bg-white/10" 
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer">
+                  Blog 
+                  <span 
+                    className="material-symbols-outlined align-middle opacity-70 ml-1" 
+                    style={{ fontSize: '12px', lineHeight: '1' }}>
+                      open_in_new
+                  </span>
+              </a>
           </div>
           <a
             href="#contact"
@@ -101,8 +110,16 @@ export default function Header() {
               </a>
             </li>
             <li>
-              <a className="block px-3 py-2 rounded-md text-white/90 hover:text-white hover:bg-white/10" href="#">
-                Blog
+              <a 
+                className="block px-3 py-2 rounded-md text-white/90 hover:text-white hover:bg-white/10" 
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer">
+                  Blog
+                  <span className="material-symbols-outlined text-sm opacity-70 ml-1"
+                        style={{ fontSize: '12px', lineHeight: '1' }}>
+                          open_in_new
+                  </span>
               </a>
             </li>
             <li className="pt-1">
