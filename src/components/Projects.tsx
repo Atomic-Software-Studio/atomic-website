@@ -4,11 +4,18 @@ export default function Projects() {
   const projects = [
     {
       title: 'Appointment Workflow Automation',
-      description: 'AI-powered automation system for scheduling, reminders, confirmations, and client follow-up across WhatsApp, phone calls, and Google Sheets.',
+      description: 'Automatiza agendamiento de citas, recordatorios, confirmaciones y seguimiento de clientes vía WhatsApp y Google a través de agentes IA.',
       image: '/project_1.png',
-      alt: 'A dark-themed code editor showing lines of colorful syntax-highlighted code.'
+      alt: 'A dark-themed code editor showing lines of colorful syntax-highlighted code.',
+      technologies: ['n8n', 'OpenAI', 'WhatsApp API', 'Google Cloud']
     },
-
+    {
+      title: 'Multi-Client Automation Manager',
+      description: 'Plataforma para administrar automatizaciones y flujos personalizados de múltiples clientes aislados en un solo entorno.',
+      image: '/project_2.png',
+      alt: 'A dark-themed code editor showing lines of colorful syntax-highlighted code.',
+      technologies: ['n8n', 'Meta Apps', 'WhatsApp API', 'Docker']
+    },
   ]
 
   return (
@@ -30,9 +37,19 @@ export default function Projects() {
               width={640}
               height={400}
             />
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-dark via-background-dark/90 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-dark via-background-dark/100 to-transparent">
               <h3 className="text-xl font-bold">{project.title}</h3>
-              <p className="text-sm text-white/70">{project.description}</p>
+              <p className="text-sm text-white/70 mb-3">{project.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {project.technologies.map((tech, techIndex) => (
+                  <span 
+                    key={techIndex}
+                    className="px-3 py-1 text-xs font-medium bg-primary/20 text-primary border border-primary/40 rounded-full"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}
