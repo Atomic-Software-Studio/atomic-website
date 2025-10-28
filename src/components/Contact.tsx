@@ -8,7 +8,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="flex flex-col gap-8 p-4">
+    <section id="contact" className="flex flex-col gap-8 p-4">
       <div className="text-center">
         <h2 className="text-white text-3xl font-bold leading-tight tracking-tighter">
           Construyamos algo juntos
@@ -113,6 +113,9 @@ export default function Contact() {
               </svg>
             </a>
           </div>
+          <p className="text-white/70 mt-2">
+            contacto@atomicstudio.io
+          </p>
         </div>
       </div>
     </section>

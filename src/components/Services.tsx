@@ -23,7 +23,7 @@ export default function Services() {
   ]
 
   return (
-    <section className="flex flex-col gap-8">
+    <section id="services" className="flex flex-col gap-8">
       <div className="text-center px-4">
         <h2 className="text-white text-3xl font-bold leading-tight tracking-tighter">
           Nuestros servicios

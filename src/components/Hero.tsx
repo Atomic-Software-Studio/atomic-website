@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function Hero() {
   return (
-    <div className="w-full @container">
+    <div id="home" className="w-full @container">
       <div className="@[480px]:p-4">
         <div 
           className="group/hero relative flex min-h-[480px] flex-col gap-8 bg-cover bg-center bg-no-repeat @[480px]:gap-10 @[480px]:rounded-xl items-center justify-center p-4 overflow-hidden"

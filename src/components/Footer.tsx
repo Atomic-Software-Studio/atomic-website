@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="text-center py-8 border-t border-white/10 mt-16">
+    <footer className="text-center py-8 border-t border-white/10">
       <p className="text-sm text-white/50">
         Atomic Software Studio © 2025. Todos los derechos reservados.
       </p>
