@@ -17,17 +17,14 @@ export default function Header() {
     <>
       <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 sm:px-10 py-3 fixed top-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[960px] bg-background-dark/50 backdrop-blur-md rounded-lg z-50">
         <div className="flex items-center gap-4 text-white">
-          <div className="size-5 relative">
+          <div className="relative w-40 h-14 sm:w-48 sm:h-15 md:w-56 md:h-18">
             <Image
-              src="/logo_icono.png"
+              src="/logo_nombre.png"
               alt="Atomic Software Studio Icon"
               fill
               className="object-contain"
             />
           </div>
-          <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">
-            Atomic Software Studio
-          </h2>
         </div>
 
         {/* Desktop */}
@@ -44,7 +41,7 @@ export default function Header() {
             </a>
             <a 
                 className="block rounded-md text-white/90 hover:text-white hover:bg-white/10" 
-                href="#"
+                href="/blog"
                 target="_blank"
                 rel="noopener noreferrer">
                   Blog 

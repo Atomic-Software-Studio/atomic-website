@@ -5,14 +5,14 @@ export default function Projects() {
     {
       title: 'Appointment Workflow Automation',
       description: 'Automatiza agendamiento de citas, recordatorios, confirmaciones y seguimiento de clientes vía WhatsApp y Google a través de agentes IA.',
-      image: '/project_1.png',
+      image: '/projects/project_1.png',
       alt: 'A dark-themed code editor showing lines of colorful syntax-highlighted code.',
       technologies: ['n8n', 'OpenAI', 'WhatsApp API', 'Google Cloud']
     },
     {
       title: 'Multi-Client Automation Manager',
       description: 'Plataforma para administrar automatizaciones y flujos personalizados de múltiples clientes aislados en un solo entorno.',
-      image: '/project_2.png',
+      image: '/projects/project_2.png',
       alt: 'A dark-themed code editor showing lines of colorful syntax-highlighted code.',
       technologies: ['n8n', 'Meta Apps', 'WhatsApp API', 'Docker']
     },

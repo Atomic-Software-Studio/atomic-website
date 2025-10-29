@@ -9,13 +9,13 @@ export default function Hero() {
         <div 
           className="group/hero relative flex min-h-[480px] flex-col gap-8 bg-cover bg-center bg-no-repeat @[480px]:gap-10 @[480px]:rounded-xl items-center justify-center p-4 overflow-hidden"
           style={{
-            backgroundImage: `linear-gradient(135deg, #042b13 0%, #09202b 100%)`
+            backgroundImage: `linear-gradient(135deg, #063e5b 0%, #0b2a3a 100%)`
           }}
         >
           <div 
             className="absolute inset-0 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-500 @[480px]:rounded-xl"
             style={{
-              backgroundImage: `linear-gradient(135deg, #07481f 0%, #0f374a 100%)`
+              backgroundImage: `linear-gradient(135deg, #0da6f2 0%, #063e5b 100%)`
             }}
           />
           
