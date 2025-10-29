@@ -5,13 +5,14 @@ export default function Footer() {
         Atomic Software Studio © 2025. Todos los derechos reservados.
       </p>
       <p className="text-sm text-white/30">
-        By: <a 
-              className="hover:text-primary transition-colors" 
-              href="https://danielramirez.pro/" 
-              aria-label="Daniel Fernando Ramírez Giraldo"
-            >
-              Daniel Ramirez.
-            </a>
+        <a 
+          className="hover:text-primary transition-colors" 
+          target="_blank"
+          href="https://danielramirez.pro/" 
+          aria-label="Daniel Fernando Ramírez Giraldo"
+        >
+          Daniel Ramirez
+        </a>
       </p>
     </footer>
   )
