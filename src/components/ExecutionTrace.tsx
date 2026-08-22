@@ -68,7 +68,7 @@ export default function ExecutionTrace() {
   return (
     <figure
       data-register="ink"
-      className="w-full border border-ink-rule-strong p-6 md:p-8"
+      className="w-full border border-ink-rule-strong p-4 sm:p-6 md:p-8"
     >
       <figcaption className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-hairline pb-4">
         <span className="font-mono text-micro text-fg uppercase">
@@ -101,10 +101,13 @@ export default function ExecutionTrace() {
             <th scope="col" className="pb-3 font-medium">
               node
             </th>
-            <th scope="col" className="pb-3 text-right font-medium">
+            {/* Withheld anyway, so it is the first thing to go when space is
+                short. Dropping it below sm keeps node and status legible
+                instead of letting three columns crush each other. */}
+            <th scope="col" className="hidden pb-3 text-right font-medium sm:table-cell">
               elapsed
             </th>
-            <th scope="col" className="pb-3 pl-6 text-right font-medium">
+            <th scope="col" className="pb-3 pl-3 text-right font-medium sm:pl-6">
               status
             </th>
           </tr>
@@ -129,11 +132,11 @@ export default function ExecutionTrace() {
                 </th>
 
                 {/* Withheld, not invented. */}
-                <td className="py-2.5 text-right text-meta text-fg-muted tabular-nums">
+                <td className="hidden py-2.5 text-right text-meta whitespace-nowrap text-fg-muted tabular-nums sm:table-cell">
                   <span title="Placeholder — awaiting real timings">--.---s</span>
                 </td>
 
-                <td className="py-2.5 pl-6 text-right text-meta">
+                <td className="py-2.5 pl-3 text-right text-meta sm:pl-6">
                   <span
                     className={
                       state === 'ok'

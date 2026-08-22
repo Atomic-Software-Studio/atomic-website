@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Header from '@/components/sections/Header'
 import Footer from '@/components/sections/Footer'
@@ -6,6 +7,11 @@ import Footer from '@/components/sections/Footer'
  * Written in voice rather than as a shrug. An empty screen is an invitation to
  * act, and the error explains what happened without apologising for it.
  */
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  robots: { index: false, follow: true },
+}
 
 export default function NotFound() {
   return (
