@@ -1,13 +1,25 @@
-import ExecutionTrace from '@/components/ExecutionTrace'
-import Logo from '@/components/brand/Logo'
+import Header from '@/components/sections/Header'
+import Hero from '@/components/sections/Hero'
+import Capabilities from '@/components/sections/Capabilities'
+import Work from '@/components/sections/Work'
+import Principles from '@/components/sections/Principles'
+import StackAndClients from '@/components/sections/StackAndClients'
+import Contact from '@/components/sections/Contact'
+import Footer from '@/components/sections/Footer'
 
 export default function Home() {
   return (
-    <main id="main" className="mx-auto max-w-6xl px-6 py-24 md:px-8">
-      <Logo variant="color" className="text-3xl" />
-      <div className="mt-16">
-        <ExecutionTrace />
-      </div>
-    </main>
+    <>
+      <Header />
+      <main id="main">
+        <Hero />
+        <Capabilities />
+        <Work />
+        <Principles />
+        <StackAndClients />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   )
 }

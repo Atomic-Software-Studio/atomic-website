@@ -25,11 +25,16 @@ export function MetaLabel({
 
 /**
  * A stack tag. Names a real tool, so it is set in mono and never abbreviated
- * or prettified — "n8n" stays lowercase, "WhatsApp Cloud API" stays long.
+ * or prettified — "n8n" stays lowercase, "Next.js" keeps its dot, "WhatsApp
+ * Cloud API" stays long.
+ *
+ * Deliberately NOT uppercased: a text-transform would render n8n as "N8N" and
+ * Next.js as "NEXT.JS", which is the site telling a small lie about the names
+ * of other people's software. Tracking carries the mono texture instead.
  */
 export function Tag({ children }: { children: ReactNode }) {
   return (
-    <li className="border border-hairline-strong px-2 py-1 font-mono text-micro text-fg-muted uppercase">
+    <li className="border border-hairline-strong px-2 py-1 font-mono text-micro tracking-normal text-fg-muted">
       {children}
     </li>
   )

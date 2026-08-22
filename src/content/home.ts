@@ -15,7 +15,7 @@
  */
 
 export const hero = {
-  eyebrow: 'Software studio · Medellín, Colombia',
+  eyebrow: { role: 'Software studio', place: 'Medellín, Colombia' },
   headline: 'We build the systems that do the work.',
   standfirst:
     'AI systems, automation, integrations, and the software around them. We take them all the way into production — where they run unattended, and leave a trace when something breaks.',
@@ -23,7 +23,21 @@ export const hero = {
   secondaryCta: 'contact@atomicstudio.dev',
 } as const
 
-export const capabilities = {
+export type Capability = {
+  name: string
+  body: string
+  stack: readonly string[]
+  /** The one the studio actually leads with. Set on exactly one item. */
+  lead?: boolean
+}
+
+export const capabilities: {
+  index: string
+  label: string
+  heading: string
+  intro: string
+  items: readonly Capability[]
+} = {
   index: '01',
   label: 'Capabilities',
   heading: 'Four things, and the lines between them are thin.',
@@ -52,7 +66,7 @@ export const capabilities = {
       stack: ['WhatsApp Cloud API', 'Meta Apps', 'Google Cloud', 'Docker'],
     },
   ],
-} as const
+}
 
 export const work = {
   index: '02',
@@ -114,9 +128,11 @@ export const stack = {
   heading: 'What we actually run.',
   intro:
     'Not a certification wall. This is what is in production right now — if something is not on this list, we will say so rather than learn it on your budget.',
+  // Every entry below is evidenced by shipped work. Nothing aspirational
+  // sits in this list, because the heading above claims it is all running.
   groups: [
-    { name: 'Automation', items: ['n8n', 'Webhooks', 'Cron', 'Queues'] },
-    { name: 'AI', items: ['OpenAI', 'Whisper', 'Tool calling', 'Retrieval'] },
+    { name: 'Automation', items: ['n8n', 'Webhooks', 'Scheduled triggers', 'Error handling'] },
+    { name: 'AI', items: ['OpenAI', 'Whisper', 'Tool calling', 'Conversation memory'] },
     { name: 'Web', items: ['Next.js', 'React', 'TypeScript', 'Tailwind'] },
     { name: 'Infrastructure', items: ['Docker', 'Google Cloud', 'Meta Apps', 'WhatsApp Cloud API'] },
   ],
