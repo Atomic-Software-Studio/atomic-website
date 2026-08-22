@@ -22,9 +22,11 @@ Before any strategy, the facts the redesign is built on. Everything below is fro
 
 **Two observations that shaped everything below:**
 
-1. The most distinctive thing this studio does is not "AI." It is **WhatsApp-native automation that accepts voice notes**. The pipeline downloads audio and transcribes it *before* the agent reasons. That is a specific, correct read of how business actually gets done in Colombia and LatAm — people send voice notes, not typed messages. No generic AI agency has that in their pipeline. It should be the loudest thing on the site.
+1. **The work already in the repo goes all the way into production.** Not a prototype, not a demo — a running pipeline with real tool-calling, real memory, real third-party APIs, deployed and isolated. That operations posture is the through-line across every service line, and it is the thing to position on.
 
-2. The second most distinctive thing is **multi-tenant isolation**. They don't ship one-off automations, they run a platform where each client's workflows are walled off from each other. That is an operations posture, not a delivery posture. It says: we run things, we don't just hand them over.
+2. **The evidence is unusually concrete for a studio this size.** A real agent with real tools. A real multi-tenant deployment. Most studios at this stage have opinions; this one has artifacts. The site's job is to show the artifacts rather than describe the opinions.
+
+> **Scope correction (post-review, 2026-08-22).** An earlier draft of this brief positioned the studio on *WhatsApp-native voice-note automation* specifically. Per the founder: Atomic sells **AI solutions broadly** — agents, automation, web, integrations, cloud — and the service portfolio is not fixed yet. So the voice-note pipeline is demoted from *thesis* to *evidence*: it is the best proof we have that the systems reach production, and it appears as a case study, not as the definition of the business. Positioning below is written broad enough to hold new service lines without a rewrite, and specific enough in voice that "broad" never becomes "vague."
 
 ---
 
@@ -34,18 +36,28 @@ Before any strategy, the facts the redesign is built on. Everything below is fro
 
 > **Atomic builds the systems that do the work.**
 >
-> Not demos, not chatbots — production automation, AI agents, integrations, and the web software around them. Built to run unattended, isolated per client, and observable when something breaks.
+> AI systems, automation, integrations, and the software around them — taken all the way into production, where they run unattended and leave a trace when something breaks.
+
+The positioning is deliberately **capability-broad and posture-narrow**. What Atomic builds stays open (AI is moving too fast, and the portfolio isn't fixed yet). *How* Atomic builds is the claim, and it's the same claim whatever the service line is.
 
 ### The three things we lead with
 
 **1. It runs in production, or it isn't finished.**
-The register is operations, not innovation. Everything on the site should imply *this is currently running somewhere right now* rather than *this is possible*. That's what separates a studio from an agency deck.
+The register is operations, not innovation. Everything on the site should imply *this is running somewhere right now* rather than *this is possible*. That's what separates a studio from an agency deck — and it's the one differentiator that holds across every service line, present and future.
 
-**2. Voice-first, WhatsApp-native.**
-This is the wedge. Everyone builds a chat widget. Atomic builds for the channel businesses actually use, and handles the format people actually send: a 40-second voice note at 11pm. Transcription is step two of the pipeline, before any reasoning happens.
+**2. It's built on the systems you already run.**
+Not a parallel tool your team has to adopt. Atomic works into the channels, databases, calendars, and APIs a business already depends on — which is where most AI projects actually die. The appointment pipeline is the proof: it reaches into WhatsApp, transcription, memory, and a real calendar, and none of it asked the client to change how they work.
 
-**3. Every client gets their own walls.**
-Multi-tenant isolation as a stated principle. Your workflows, your credentials, your data, your failure domain. This is a maturity signal that costs nothing to claim honestly because they already built it.
+**3. Your system, your walls.**
+Isolation and ownership as a stated principle: your workflows, your credentials, your environment, your failure domain. Costs nothing to claim honestly, because it's already built.
+
+### On staying broad without going vague
+
+With no fixed service catalogue, the temptation is to write copy that covers everything and therefore says nothing — which lands straight in the banned register. The discipline that prevents it:
+
+- **Describe capability broadly, evidence specifically.** "AI systems that use tools and act on real data" is a wide claim; it is immediately followed by a named, real example with a named stack. Every broad sentence on the site is within one scroll of a concrete artifact.
+- **Never claim a service line we can't evidence.** Four capabilities, each traceable to something in the repo.
+- **Widen scope with nouns, not adjectives.** "AI systems, automation, integrations, cloud" is broad and concrete. "End-to-end intelligent solutions" is broad and empty.
 
 ### Tone of voice
 
@@ -79,8 +91,19 @@ Small studio, real depth in two places. One marketing page plus two case-study p
 | 3 | **Selected work** | The two real case studies, told editorially, each linking to its own page. |
 | 4 | **Operating principles** | Four opinions about how automation should be built, each defensible from work already shipped. This is the "why hire them" section. |
 | 5 | **Stack & clients** | What we actually run, and who we run it for. Honest about being one named client. |
-| 6 | **Contact** | One low-friction way in, plus direct email. No form theater. |
+| 6 | **Contact** | One low-friction way in — WhatsApp — plus direct email and the founder line. |
 | 7 | **Footer** | Identity, links, and a small closing signature. |
+
+**The four capabilities**, written broad enough to hold new service lines, each anchored to something real in the repo:
+
+| Capability | Scope | Evidenced by |
+|---|---|---|
+| **AI systems & agents** | Agents that use tools, hold context, and act on real data — not chat widgets. | Real agent with memory and two live tools (`check_availability`, `get_booking`); OpenAI transcription in-pipeline. |
+| **Automation & workflow engineering** | The plumbing between the systems a business already runs. | n8n pipelines in production; both case studies. |
+| **Web & product engineering** | Applications, dashboards, and client-facing surfaces. | Next.js + TypeScript; this site. |
+| **Integrations, cloud & operations** | APIs, deployment, isolation, keeping it running. | WhatsApp Cloud API, Meta Apps, Google Cloud, Docker, multi-tenant isolation. |
+
+The first row is set largest and carries the most detail — the hierarchy states what the studio leads with, without pretending the other three are equal-weight cards.
 
 ### `/work/appointment-automation` — Case study
 
@@ -97,8 +120,9 @@ Written in voice, not a shrug.
 ### Removed on purpose
 
 - **Vision section** — a centered box of abstract sentiment. Folded into the hero and the closing line, where it earns its place.
-- **`/blog`** — currently in the nav pointing at a route that does not exist. Dead links cost more trust than a missing link. Removed until there's a blog. *(Flagged in §7.)*
-- **Client carousel** — arrows and pagination for a single logo. Replaced with an honest single-client treatment.
+- **`/blog`** — nav currently points at a route that does not exist. Dead links cost more trust than missing ones. Confirmed removed.
+- **Client carousel** — arrows and pagination for a single logo. Replaced with an honest single-client treatment that accepts more logos later without a redesign.
+- **The contact form** — it posted to `console.log`, so every message ever sent through it was lost. Replaced with a WhatsApp link and a plain email address. For a studio that sells automation, a form that silently drops messages is the worst possible thing to have on the page; two links that provably work are better than a form that looks more serious.
 
 ---
 
@@ -270,26 +294,34 @@ Testing the plan against the aesthetics the brief bans and the ones AI design re
 
 ---
 
-## 7. Flagged — I need real information from you
+## 7. Decisions log — answered by the founder
 
-I will not invent any of these. Marked in code as `[NEEDS REAL DATA: ...]` until answered.
+All eleven flags resolved on 2026-08-22. Recorded here so the reasoning survives the conversation.
 
-**Blocking-ish (affects what ships):**
+| # | Question | Answer | Consequence in code |
+|---|---|---|---|
+| 1 | Contact email | **`contact@atomicstudio.dev`** | Replaces `contacto@atomicstudio.io` everywhere. |
+| 2 | Contact form backend | **Drop the form. Use a direct WhatsApp link.** Number `3000000000`, to be corrected later. | No form component ships. Primary CTA is `wa.me`. Number lives in one config constant, marked as a placeholder. |
+| 3 | LinkedIn | Point at **`linkedin.com`** for now; exact URL later. | Same config constant pattern, marked placeholder. |
+| 4 | `project_2.png` | **My call.** | It does not ship. Replaced with an original SVG diagram of the isolation model, drawn by us. |
+| 5 | Case-study metrics | Placeholder | `[NEEDS REAL DATA: …]` rendered visibly in-page, not silently omitted. |
+| 6 | Trace durations | Placeholder | Trace ships with node names real and timings withheld rather than invented. |
+| 7 | Grupo NexIA | **Permission granted.** More clients later. | Named on the site. Client section built to take more logos without redesign. |
+| 8 | City | **Medellín** | Hero eyebrow, footer, and `LocalBusiness` structured data. |
+| 9 | Who's behind it | **Daniel Ramirez, founder.** References at `danielramirez.pro`. | A short founder line ships — the strongest trust signal available to a studio this size. |
+| 10 | Blog | **Remove for now.** | Dropped from nav; no route. |
+| 11 | Vector logo originals | **None exist.** | We redraw the mark as SVG from the PNGs. This becomes a real deliverable, not a nice-to-have. |
 
-1. **Email domain mismatch.** The site is `atomicstudio.dev` but the contact address is `contacto@atomicstudio.io`. Which is correct?
-2. **Contact form has no backend** — it currently does `console.log`. Where should submissions go? Options: `mailto:`, Formspree/Resend, or — most on-brand for a WhatsApp automation studio — a direct WhatsApp link. If WhatsApp, I need the number.
-3. **LinkedIn URL is `#`.** Real URL, or drop the icon?
-4. **`project_2.png` should not ship.** It's a photo of someone else's multi-tenancy reference architecture slide, not Atomic's work. I'll replace it with an original diagram of your actual isolation model unless you have a real screenshot.
+### Placeholder policy
 
-**Content gaps (I'll placeholder these):**
+Placeholders are **visible, not invisible**. A metric we don't have renders as a marked slot in the page rather than being quietly cut, so that (a) nothing fabricated ever ships, and (b) the gaps are impossible to forget before launch. Every one is greppable:
 
-5. **Case study outcomes.** Any real numbers — bookings handled, response time, hours saved, uptime, tenant count? Currently `[NEEDS REAL DATA]`.
-6. **Trace durations.** Real per-node timings from an actual n8n execution would make the hero genuinely truthful rather than illustrative. A single exported run would do it.
-7. **Grupo NexIA** — do you have permission to name them? Any other clients?
-8. **City** — "Colombia" is in the hero eyebrow; a city (Medellín? Bogotá?) is more specific and more credible.
-9. **Who's behind it.** Small elite studios name their people. Currently the only human signal is a footer credit to Daniel Ramirez. Worth a short "who you'll actually work with" line?
-10. **Blog** — genuinely planned, or remove from nav for good?
-11. **Vector logo originals** — do `.ai`/`.svg`/Figma files exist?
+```
+[NEEDS REAL DATA: ...]     content gaps  — visible in the rendered page
+PLACEHOLDER                config values — WhatsApp number, LinkedIn URL
+```
+
+A single `npm run check:placeholders` script will list them all before launch.
 
 ---
 
