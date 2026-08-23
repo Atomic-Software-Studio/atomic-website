@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { OgFrame, OG_SIZE, OG_CONTENT_TYPE, loadOgFonts } from '@/lib/og'
+import { OgFrame, OG_SIZE, OG_CONTENT_TYPE, loadOgFonts, loadOgLockup } from '@/lib/og'
 import { caseStudies, caseStudyList } from '@/content/case-studies'
 
 export const size = OG_SIZE
@@ -16,9 +16,10 @@ export async function generateImageMetadata({ params }: { params: { slug: string
 
 export default async function CaseStudyOpengraphImage({ params }: { params: { slug: string } }) {
   const study = caseStudies[params.slug]
+  const [fonts, lockup] = await Promise.all([loadOgFonts(), loadOgLockup()])
 
   return new ImageResponse(
-    <OgFrame kicker="Case study" title={study?.summary ?? ''} titleSize={64} />,
-    { ...size, fonts: await loadOgFonts() },
+    <OgFrame kicker="Case study" title={study?.summary ?? ''} lockup={lockup} titleSize={64} />,
+    { ...size, fonts },
   )
 }

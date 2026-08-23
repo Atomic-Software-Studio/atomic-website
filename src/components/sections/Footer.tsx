@@ -23,7 +23,7 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8 md:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-6">
-            <Logo variant="color" className="text-2xl" />
+            <Logo variant="color" className="h-16 md:h-20" maxWidth={200} />
             <p className="mt-6 max-w-prose font-prose text-prose text-fg-muted">
               {footer.closing}
             </p>

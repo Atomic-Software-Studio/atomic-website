@@ -57,7 +57,7 @@ export default function Header() {
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 md:px-8">
         <a href="#top" className="rounded-sharp" aria-label="Atomic Software Studio, back to top">
-          <Logo className="text-lg" />
+          <Logo variant="dark" className="h-10 sm:h-12" maxWidth={120} priority />
         </a>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">

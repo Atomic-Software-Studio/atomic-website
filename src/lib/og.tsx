@@ -17,7 +17,8 @@ import { site } from '@/lib/site'
 export const OG_SIZE = { width: 1200, height: 630 }
 export const OG_CONTENT_TYPE = 'image/png'
 
-const DESCRIPTOR = 'SOFTWARE STUDIO'
+/** Intrinsic size of the supplied lockup artwork. */
+const LOCKUP_ASPECT = 1906 / 803
 
 export async function loadOgFonts() {
   const [bold, regular] = await Promise.all([
@@ -31,13 +32,29 @@ export async function loadOgFonts() {
   ]
 }
 
+/**
+ * The real lockup, inlined as a data URI.
+ *
+ * Satori cannot resolve a relative path, and a build should not make a network
+ * call to render its own link preview — so the file is read from disk and
+ * embedded. It costs nothing at runtime: this all happens once, at build, and
+ * the output is a flat PNG.
+ */
+export async function loadOgLockup() {
+  const file = await readFile(join(process.cwd(), 'public/brand/atomic-lockup-color.png'))
+  return `data:image/png;base64,${file.toString('base64')}`
+}
+
 export function OgFrame({
   kicker,
   title,
+  lockup,
   titleSize = 78,
 }: {
   kicker?: string
   title: string
+  /** Data URI from loadOgLockup(). */
+  lockup: string
   titleSize?: number
 }): ReactElement {
   return (
@@ -54,47 +71,15 @@ export function OgFrame({
         fontFamily: 'Archivo',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-        {/* The mark, inline so no asset fetch is needed at build. */}
-        <svg width="76" height="76" viewBox="0 0 100 100" fill="none">
-          <g stroke="#3FE0CE" strokeWidth="3.5" strokeLinecap="round">
-            <path d="M37.84 95.4 A47 47 0 1 1 62.16 95.4" />
-            <g transform="rotate(-12 50 50)">
-              <ellipse cx="50" cy="50" rx="38" ry="14.5" />
-              <ellipse cx="50" cy="50" rx="38" ry="14.5" transform="rotate(60 50 50)" />
-              <ellipse cx="50" cy="50" rx="38" ry="14.5" transform="rotate(120 50 50)" />
-              <circle cx="12.8" cy="53" r="4.2" fill="#3FE0CE" stroke="none" />
-              <circle cx="86.7" cy="46.25" r="4.2" fill="#3FE0CE" stroke="none" />
-            </g>
-            <circle cx="50" cy="50" r="9" fill="#3FE0CE" stroke="none" />
-          </g>
-        </svg>
-
-        {/* The width match, rebuilt for a layout engine with no
-            text-align-last: the column shrinks to ATOMIC, and the descriptor
-            spreads its letters across exactly that width. */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          <span style={{ fontSize: 38, fontWeight: 700, letterSpacing: '-0.015em', lineHeight: 1 }}>
-            ATOMIC
-          </span>
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-              justifyContent: 'space-between',
-              fontSize: 13,
-              color: '#9BA5A8',
-              marginTop: 6,
-            }}
-          >
-            {/* space-between distributes evenly between every child, so a
-                plain space collapses into the letter rhythm. Two nbsp keep
-                the word gap visibly wider than the letter gap. */}
-            {[...DESCRIPTOR].map((char, index) => (
-              <span key={`${char}-${index}`}>{char === ' ' ? '  ' : char}</span>
-            ))}
-          </div>
-        </div>
+      {/* The studio's own lockup, not a reconstruction of it. */}
+      <div style={{ display: 'flex' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={lockup}
+          alt="Atomic Software Studio"
+          width={Math.round(108 * LOCKUP_ASPECT)}
+          height={108}
+        />
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column' }}>

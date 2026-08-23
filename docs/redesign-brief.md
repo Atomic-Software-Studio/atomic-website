@@ -264,14 +264,23 @@ The mark is genuinely good and — importantly — it is *not* an AI trope. It's
 - The stacked lockup where `ATOMIC` and the descriptor line are set to the **same optical width**. This is the strongest structural idea in the existing identity and it survives untouched.
 
 **Adapt:**
-- **Rebuild as SVG.** `logo_full.png` is 955KB and `logo_icono.png` is 753KB for what is fundamentally eight vector paths. This alone is a meaningful performance win.
-- **Make it monochrome-first**, drawn in `currentColor` so it works on paper and on ink from one file. The cyan→green gradient survives as an optional full-colour variant used at exactly two placements — the largest hero mark and the footer. Everywhere else the mark is a single colour. A logo that can go one-colour is a logo that can go on a t-shirt, an invoice, and a favicon.
-- **Reset the wordmark in Archivo**, heavy and tight-tracked, preserving the width-matched two-line construction. Right now the logotype is in a typeface that appears nowhere else on the site; after this it's in the system.
-- **Tighten the orbit geometry** — the current orbits are slightly irregular and the nucleus carries a raster glow that can't scale.
+- Use **clean artwork at the right size** rather than a 955KB export scaled down in the browser.
+- **Two ground-specific variants**, chosen by register rather than by preference: near-black on paper, full colour on ink.
+- Keep the **cyan→green gradient rare** — one placement, so it reads as an object the studio owns rather than a style the site wears.
 
-**Deliverables:** `atomic-mark.svg` (mono), `atomic-mark-color.svg` (gradient), `atomic-lockup.svg`, `atomic-lockup-stacked.svg`, plus a favicon/apple-touch/OG set.
-
-**Flagged:** I'll rebuild these as faithful SVG redraws from the PNGs. If vector originals exist (`.ai`, `.svg`, Figma), those are strictly better — see §7.
+> **Superseded (2026-08-22).** An earlier version of this section proposed redrawing the mark as SVG in `currentColor`, on the basis that no vector originals existed. That redraw shipped briefly and was **wrong**: compared against the studio's real artwork, the orbit geometry, the break in the outer ring, the electron positions, the stroke weights, and the weight contrast between "software" and "studio" were all subtly off. A logo cannot be approximately correct.
+>
+> The founder then supplied real artwork, and the redraw was deleted. What the site now ships:
+>
+> | File | Where |
+> |---|---|
+> | `public/brand/atomic-lockup-dark.png` | header (paper register) |
+> | `public/brand/atomic-lockup-color.png` | footer (ink register), and inlined into every generated OG image |
+> | `src/app/icon.png`, `src/app/apple-icon.png` | favicon and touch icon, mark on an ink ground |
+>
+> Source files, including the unused light-grey lockup variant, live in `brand-source/`.
+>
+> **The cost of the change, recorded honestly:** the redraw was monochrome and drawn in `currentColor`, so it adapted to any ground from one file. Raster artwork cannot do that — a new dark surface now needs a matching variant rather than inheriting one. That is the correct trade: being *actually* the logo matters more than being conveniently recolourable. If a vector original ever surfaces, `currentColor` becomes possible again and this trade goes away.
 
 ---
 
