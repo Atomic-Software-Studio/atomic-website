@@ -73,7 +73,9 @@ There are no decorative colours. Teal (`--signal` / `--signal-deep`) means *done
 Amber (`--flux` / `--flux-deep`) means *in flight, needs attention*. If a colour cannot answer
 "what state is this reporting?", it does not belong.
 
-There are **no gradients** anywhere except the logo mark, at its largest placements only.
+There are **no gradients** anywhere except the logo itself — the footer lockup and the generated OG
+images. Keeping it rare is what makes it read as an object the studio owns rather than a style the
+site wears.
 
 ### Other rules that are easy to break by accident
 
@@ -96,10 +98,11 @@ src/
     work/[slug]/page.tsx        case studies (SSG)
     not-found.tsx               404
     opengraph-image.tsx         generated link preview
+    icon.png / apple-icon.png   favicon and touch icon
     _fonts/                     TTFs for OG generation only — never served
     globals.css                 all design tokens
   components/
-    brand/                      AtomicMark, Logo
+    brand/                      Logo
     primitives/                 Section, Reveal, ui.tsx
     sections/                   the page sections
     ExecutionTrace.tsx          the signature element
@@ -113,12 +116,27 @@ touching layout.
 
 ## Brand assets
 
-`AtomicMark` is vector and drawn in `currentColor`; `public/atomic-mark.svg` is the standalone file.
-The original PNGs in `public/` are kept deliberately — they are the source of record and may be
-linked externally — but nothing on the site loads them.
+The logo is the studio's own artwork, never a reconstruction. Variant is chosen by the **ground it
+sits on**, not by preference:
 
-The wordmark is **real text**, not an image. `ATOMIC` sets the width and the descriptor below
-justifies to exactly that width, so the lockup stays matched at any size.
+| Asset | Used by |
+|---|---|
+| `public/brand/atomic-lockup-dark.png` | header — the paper register |
+| `public/brand/atomic-lockup-color.png` | footer — the ink register, and inlined into every generated OG image |
+| `src/app/icon.png` · `src/app/apple-icon.png` | favicon and touch icon — the mark on an ink ground |
+
+Render it through `<Logo variant="dark" | "color" />`, which passes the intrinsic 1906×803 through
+to `next/image` so the box is reserved (no layout shift) and a resized AVIF/WebP is served rather
+than the source PNG. Set display size in CSS via `className`, not by editing the component.
+
+**Adding the logo to a new dark surface needs a variant, not a class.** Raster artwork can't inherit
+`currentColor`. `brand-source/atomic-lockup-light.png` is a light-grey version held in reserve for
+exactly that case; the colour lockup is the better choice on ink unless the gradient is already in
+use nearby.
+
+Everything supplied by the studio lives in `brand-source/` as the source of record. The legacy
+`logo_*.png` files in `public/` are kept deliberately — they may be linked externally — but nothing
+on the site loads them.
 
 ## Fonts
 

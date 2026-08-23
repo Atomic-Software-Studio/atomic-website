@@ -1,49 +1,55 @@
-import AtomicMark from './AtomicMark'
+import Image from 'next/image'
 
 /**
- * The lockup: mark + width-matched wordmark.
+ * The real lockup, as supplied by the studio.
  *
- * The one structural idea worth keeping from the original identity is that
- * ATOMIC and the descriptor below it are set to the same optical width. In the
- * old PNG that match was baked in by hand at one fixed size. Here it is a
- * mechanism: the flex column takes its width from the wider line (ATOMIC), and
- * the descriptor uses text-align-last:justify to spread to exactly that width.
- * It stays matched at every size, in every weight, forever.
+ * This replaces an earlier SVG redraw of the mark. The redraw was close but
+ * not right — the orbit geometry, the break in the outer ring, the stroke
+ * weights and the weight contrast between "software" and "studio" were all
+ * subtly off, and those are exactly the things a logo cannot be approximately
+ * correct about. The artwork now ships as the studio's own files.
  *
- * The wordmark is real text rather than an image — selectable, translatable,
- * readable by a screen reader, and ~160KB lighter than logo_nombre.png.
+ * Variant is chosen by the ground it sits on, not by preference:
+ *   dark  — near-black artwork, for the paper register
+ *   color — the cyan-to-green gradient, for the ink register
+ *
+ * The gradient stays rare on purpose (docs §3): it appears at one placement so
+ * it reads as an object the studio owns rather than a style the site wears.
+ *
+ * Intrinsic dimensions are passed through exactly so Next reserves the correct
+ * box (no layout shift) and serves a resized AVIF/WebP rather than the source
+ * PNG. Display size is set by the caller in CSS, so it can be responsive.
  */
 
+const LOCKUP = {
+  width: 1906,
+  height: 803,
+  src: {
+    dark: '/brand/atomic-lockup-dark.png',
+    color: '/brand/atomic-lockup-color.png',
+  },
+} as const
+
 type LogoProps = {
-  /** `color` uses the gradient mark. Reserved for the two largest placements. */
-  variant?: 'mono' | 'color'
-  /** Hides the wordmark, leaving only the mark. */
-  markOnly?: boolean
+  /** Match this to the register the logo sits on. */
+  variant: 'dark' | 'color'
+  /** Height utilities, e.g. "h-9 sm:h-11". Width is always auto. */
   className?: string
+  /** Widest rendered width in CSS px, so Next picks a sensible source. */
+  maxWidth: number
+  priority?: boolean
 }
 
-export default function Logo({ variant = 'mono', markOnly = false, className }: LogoProps) {
+export default function Logo({ variant, className, maxWidth, priority = false }: LogoProps) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className ?? ''}`}>
-      <AtomicMark variant={variant} className="h-[1.9em] w-[1.9em] shrink-0" />
-
-      {markOnly ? (
-        <span className="sr-only">Atomic Software Studio</span>
-      ) : (
-        <span aria-hidden="true" className="inline-flex flex-col leading-none">
-          <span className="font-display text-[1em] leading-[0.9] font-bold tracking-[-0.015em]">
-            ATOMIC
-          </span>
-          <span
-            className="font-mono text-[0.375em] leading-none uppercase"
-            style={{ textAlignLast: 'justify' }}
-          >
-            software studio
-          </span>
-        </span>
-      )}
-
-      {!markOnly && <span className="sr-only">Atomic Software Studio</span>}
-    </span>
+    <Image
+      src={LOCKUP.src[variant]}
+      alt="Atomic Software Studio"
+      width={LOCKUP.width}
+      height={LOCKUP.height}
+      sizes={`${maxWidth}px`}
+      priority={priority}
+      className={`w-auto ${className ?? ''}`}
+    />
   )
 }
