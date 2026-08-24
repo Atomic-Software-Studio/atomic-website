@@ -1,19 +1,264 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-html {
-  scroll-behavior: smooth;
+/* ==========================================================================
+   ATOMIC SOFTWARE STUDIO — DESIGN TOKENS
+   See docs/redesign-brief.md §3.
+
+   The system has two registers, and they mean different things:
+     paper — where the studio speaks.
+     ink   — where the machine reports.
+   Flipping between them is never decorative. Set data-register="ink" on any
+   element and every contextual token below re-points, including the focus
+   ring. Nothing downstream needs to know which ground it is sitting on.
+   ========================================================================== */
+
+@theme {
+  /* --- Grounds ---------------------------------------------------------- */
+  --color-paper: #edeee9;
+  --color-paper-sunk: #e2e4de;
+  --color-ink: #0c1113;
+  --color-ink-raised: #141b1e;
+
+  /* --- Text ------------------------------------------------------------- */
+  /* ink on paper 16.3:1 AAA · paper on ink 16.3:1 AAA */
+  --color-ink-muted: #4b5558; /* 6.6:1 on paper, AAA */
+  --color-paper-muted: #9ba5a8; /* 7.6:1 on ink,   AAA */
+
+  /* --- Rules -----------------------------------------------------------
+     Two weights, and the distinction is honest. Decorative rules stay
+     whisper-light because forcing them to 3:1 makes the page grey and
+     heavy. Anything a user must actually perceive uses -strong. */
+  --color-rule: #cfd2cb; /* decorative, on paper */
+  --color-rule-strong: #83877e; /* 3.1:1 on paper, AA non-text */
+  --color-ink-rule: #243033; /* decorative, on ink */
+  --color-ink-rule-strong: #556468; /* 3.1:1 on ink,   AA non-text */
+
+  /* --- State -----------------------------------------------------------
+     Colour is semantic here. Teal means done/live. Amber means in flight.
+     If a colour cannot answer "what state is this reporting?", it is not
+     used. There are no decorative colours in this system. */
+  --color-signal: #3fe0ce; /* on ink only,   11.6:1 AAA */
+  --color-signal-deep: #066974; /* on paper only,  5.5:1 AA */
+  --color-flux: #f5b33c; /* on ink only,   10.3:1 AAA */
+  --color-flux-deep: #7e5204; /* on paper only,  5.8:1 AA */
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-prose: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Grotesque states it, serif explains it, mono proves it. */
+  --text-display-xl: clamp(2.75rem, 7vw, 6rem);
+  --text-display-xl--line-height: 0.94;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-xl--font-weight: 700;
+
+  --text-display-l: clamp(2rem, 4.5vw, 3.5rem);
+  --text-display-l--line-height: 1;
+  --text-display-l--letter-spacing: -0.025em;
+  --text-display-l--font-weight: 700;
+
+  --text-display-m: clamp(1.375rem, 2.5vw, 2rem);
+  --text-display-m--line-height: 1.1;
+  --text-display-m--letter-spacing: -0.015em;
+  --text-display-m--font-weight: 600;
+
+  --text-prose-l: 1.1875rem;
+  --text-prose-l--line-height: 1.6;
+
+  --text-prose: 1.0625rem;
+  --text-prose--line-height: 1.7;
+
+  --text-ui: 0.9375rem;
+  --text-ui--line-height: 1.5;
+
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.4;
+  --text-meta--letter-spacing: 0.08em;
+
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1.3;
+  --text-micro--letter-spacing: 0.12em;
+
+  /* --- Geometry ---------------------------------------------------------
+     Nothing is pill-shaped. Panels and rules are square. */
+  --radius-*: initial;
+  --radius-sharp: 2px;
+
+  /* --- Measure ----------------------------------------------------------
+     Headlines break where we decide, not where the viewport decides. */
+  --container-prose: 62ch;
+  --container-headline: 18ch;
+
+  /* --- Motion -----------------------------------------------------------
+     One orchestrated moment, then quiet. */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --animate-trace-in: trace-in 0.32s var(--ease-out-quart) both;
+  --animate-pulse-live: pulse-live 2s ease-in-out infinite;
+
+  @keyframes trace-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* The only looping animation on the site. It loops because it means
+     "still running". Nothing else loops. */
+  @keyframes pulse-live {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.35;
+    }
+  }
 }
 
-body {
-  background-color: #101c22;
+/* ==========================================================================
+   CONTEXTUAL REGISTER
+   @theme inline emits var() references rather than resolved values, so these
+   utilities follow whichever register they are rendered inside.
+   ========================================================================== */
+
+@theme inline {
+  --color-ground: var(--register-ground);
+  --color-ground-raised: var(--register-ground-raised);
+  --color-fg: var(--register-fg);
+  --color-fg-muted: var(--register-fg-muted);
+  --color-hairline: var(--register-hairline);
+  --color-hairline-strong: var(--register-hairline-strong);
+  --color-accent: var(--register-accent);
+  --color-accent-flux: var(--register-accent-flux);
 }
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+@layer base {
+  :root,
+  [data-register='paper'] {
+    --register-ground: var(--color-paper);
+    --register-ground-raised: var(--color-paper-sunk);
+    --register-fg: var(--color-ink);
+    --register-fg-muted: var(--color-ink-muted);
+    --register-hairline: var(--color-rule);
+    --register-hairline-strong: var(--color-rule-strong);
+    --register-accent: var(--color-signal-deep);
+    --register-accent-flux: var(--color-flux-deep);
+  }
+
+  [data-register='ink'] {
+    --register-ground: var(--color-ink);
+    --register-ground-raised: var(--color-ink-raised);
+    --register-fg: var(--color-paper);
+    --register-fg-muted: var(--color-paper-muted);
+    --register-hairline: var(--color-ink-rule);
+    --register-hairline-strong: var(--color-ink-rule-strong);
+    --register-accent: var(--color-signal);
+    --register-accent-flux: var(--color-flux);
+  }
+
+  /* ------------------------------------------------------------------ */
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-prose);
+    font-size: var(--text-prose);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  /* The focus ring flips with the register. A single fixed colour cannot
+     clear 3:1 on both grounds; this one always does. */
+  :focus-visible {
+    outline: 2px solid var(--register-accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  ::selection {
+    background-color: var(--register-accent);
+    color: var(--register-ground);
+  }
+
+  [data-register] {
+    background-color: var(--register-ground);
+    color: var(--register-fg);
+  }
+
+  /* Anchors clear the fixed header. */
+  :where(section[id], article[id]) {
+    scroll-margin-top: 6rem;
+  }
 }
 
-section[id] {
-  scroll-margin-top: 100px; /* ajusta a la altura real de tu navbar */
+@layer components {
+  /* A link that draws its underline rather than owning one. 120ms, no lift,
+     no colour swap — the movement is the whole affordance. */
+  .link-draw {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size 0.14s var(--ease-out-quart);
+  }
+
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  /* Persistent underline that thickens instead of appearing. */
+  .link-solid {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: background-size 0.14s var(--ease-out-quart);
+  }
+
+  .link-solid:hover,
+  .link-solid:focus-visible {
+    background-size: 100% 2px;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   The trace renders complete, the pulse becomes a static dot, reveals become
+   plain opacity. Nothing is lost — the page just stops performing.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
