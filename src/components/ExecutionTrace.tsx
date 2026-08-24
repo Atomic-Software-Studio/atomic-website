@@ -101,12 +101,12 @@ export default function ExecutionTrace() {
             <th scope="col" className="pb-3 font-medium">
               node
             </th>
-            {/* Withheld anyway, so it is the first thing to go when space is
-                short. Dropping it below sm keeps node and status legible
-                instead of letting three columns crush each other. */}
-            <th scope="col" className="hidden pb-3 text-right font-medium sm:table-cell">
-              elapsed
-            </th>
+            {/* An `elapsed` column lived here until launch, showing withheld
+                values. Rather than fill it with plausible-looking latencies,
+                it is removed until a real run is exported: the trace makes its
+                argument from the node names and their order, and a column of
+                invented numbers would weaken exactly the claim it decorates.
+                Re-add it here and in each row when the figures are measured. */}
             <th scope="col" className="pb-3 pl-3 text-right font-medium sm:pl-6">
               status
             </th>
@@ -131,11 +131,6 @@ export default function ExecutionTrace() {
                   )}
                 </th>
 
-                {/* Withheld, not invented. */}
-                <td className="hidden py-2.5 text-right text-meta whitespace-nowrap text-fg-muted tabular-nums sm:table-cell">
-                  <span title="Placeholder — awaiting real timings">--.---s</span>
-                </td>
-
                 <td className="py-2.5 pl-3 text-right text-meta sm:pl-6">
                   <span
                     className={
@@ -156,13 +151,7 @@ export default function ExecutionTrace() {
       </table>
 
       <p className="mt-6 border-t border-hairline pt-4 font-mono text-micro text-fg-muted uppercase">
-        node names are real · elapsed times{' '}
-        <span
-          data-needs-real-data
-          className="border border-dashed border-accent-flux px-1 text-accent-flux"
-        >
-          [needs real data: per-node timings from an exported run]
-        </span>
+        node names and order read from the live workflow
       </p>
     </figure>
   )

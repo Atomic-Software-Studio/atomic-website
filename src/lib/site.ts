@@ -44,9 +44,33 @@ export const site = {
   },
 } as const
 
-/** Prebuilt wa.me deep link with the opening message attached. */
-export const whatsappHref = `https://wa.me/${site.contact.whatsappNumber}?text=${encodeURIComponent(
-  site.contact.whatsappMessage,
-)}`
-
 export const mailtoHref = `mailto:${site.contact.email}`
+
+/**
+ * Launch guards.
+ *
+ * The site went live before the real WhatsApp number and LinkedIn URL existed.
+ * Shipping the placeholders as-is would have been worse than shipping nothing:
+ * `3000000000` is a plausible Colombian mobile, so the primary call to action
+ * on every page would have sent real enquiries to a stranger, and a "LinkedIn"
+ * link landing on linkedin.com's homepage reads as a broken site.
+ *
+ * So both degrade instead of breaking, and both heal themselves the moment a
+ * real value is set in `site` above — no component needs editing.
+ */
+
+const PLACEHOLDER_WHATSAPP = '3000000000'
+const PLACEHOLDER_LINKEDIN = 'https://www.linkedin.com'
+
+export const hasRealWhatsapp = site.contact.whatsappNumber !== PLACEHOLDER_WHATSAPP
+export const hasRealLinkedin = site.social.linkedin !== PLACEHOLDER_LINKEDIN
+
+/** wa.me deep link with the opening message attached — email until the number is real. */
+export const whatsappHref = hasRealWhatsapp
+  ? `https://wa.me/${site.contact.whatsappNumber}?text=${encodeURIComponent(
+      site.contact.whatsappMessage,
+    )}`
+  : mailtoHref
+
+/** Label the CTA by where it actually goes, so the button never lies. */
+export const primaryContactLabel = hasRealWhatsapp ? 'WhatsApp' : 'Email'

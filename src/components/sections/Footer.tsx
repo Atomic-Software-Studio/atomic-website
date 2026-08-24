@@ -1,6 +1,6 @@
 import Logo from '@/components/brand/Logo'
 import { footer } from '@/content/home'
-import { site } from '@/lib/site'
+import { hasRealLinkedin, site } from '@/lib/site'
 
 /**
  * One of exactly two sanctioned placements for the gradient mark — the other
@@ -9,11 +9,14 @@ import { site } from '@/lib/site'
  * object the studio owns.
  */
 
+// LinkedIn is omitted until the real company URL exists — a link that lands
+// on linkedin.com's homepage reads as a broken site, and an absent link costs
+// less trust than a dead one.
 const LINKS = [
   { href: site.social.github, label: 'GitHub' },
   { href: site.social.instagram, label: 'Instagram' },
-  { href: site.social.linkedin, label: 'LinkedIn' },
-] as const
+  ...(hasRealLinkedin ? [{ href: site.social.linkedin, label: 'LinkedIn' }] : []),
+]
 
 export default function Footer() {
   const year = new Date().getFullYear()

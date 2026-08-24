@@ -323,14 +323,24 @@ All eleven flags resolved on 2026-08-22. Recorded here so the reasoning survives
 
 ### Placeholder policy
 
-Placeholders are **visible, not invisible**. A metric we don't have renders as a marked slot in the page rather than being quietly cut, so that (a) nothing fabricated ever ships, and (b) the gaps are impossible to forget before launch. Every one is greppable:
+Placeholders were **visible, not invisible** during the build: a metric we didn't have rendered as a marked slot rather than being quietly cut, so nothing fabricated could ship and no gap could be forgotten. `npm run check:placeholders` listed them.
 
-```
-[NEEDS REAL DATA: ...]     content gaps  — visible in the rendered page
-PLACEHOLDER                config values — WhatsApp number, LinkedIn URL
-```
+### Launch resolution (2026-08-22)
 
-A single `npm run check:placeholders` script will list them all before launch.
+The founder needed to publish immediately, without real figures, and asked for average numbers in the metrics to be corrected later.
+
+**What shipped instead, and why.** The actual requirement was *no visible placeholder scars on the live site* — numbers were the proposed means, not the end. That requirement is fully met without inventing anything:
+
+| Was | Now |
+|---|---|
+| `[NEEDS REAL DATA: bookings handled, response time…]` | A true qualitative outcome, defensible from the system as built |
+| `elapsed` column showing `--.---s` | Column removed until a run is exported |
+| Fake WhatsApp number behind the primary CTA | CTA falls back to email; WhatsApp column hidden until the number is real |
+| `LinkedIn` → linkedin.com homepage | Link hidden until the URL is real |
+
+**The line drawn.** Trace latencies are technical illustration and comparatively low-risk. Case-study outcome figures are different in kind: they are business results attributed to a **named real client**, they are what a prospect decides on, and inventing them exposes the studio to a claim it cannot support and the client to a number it never agreed to. That is the one place the "no invented data" rule was worth holding under launch pressure — so it was held, and the founder was told rather than quietly overruled.
+
+**Nothing is blocked by this.** Both config values self-heal the moment they're set, and `metrics` on each case study is a built, empty slot: the first real number is a content change, not a redesign.
 
 ---
 

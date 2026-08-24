@@ -1,6 +1,6 @@
 import Section from '@/components/primitives/Section'
 import { contact } from '@/content/home'
-import { mailtoHref, site, whatsappHref } from '@/lib/site'
+import { hasRealWhatsapp, mailtoHref, site, whatsappHref } from '@/lib/site'
 
 /**
  * Two links that provably work, in place of a form that did not.
@@ -26,23 +26,28 @@ export default function Contact() {
       <h3 className="max-w-headline text-display-l text-balance">{contact.heading}</h3>
       <p className="mt-6 max-w-prose font-prose text-prose text-fg-muted">{contact.intro}</p>
 
-      <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2">
-        <div className="border-t border-hairline-strong pt-6">
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-baseline gap-3 font-display text-display-m"
-          >
-            <span className="link-draw">WhatsApp</span>
-            <span aria-hidden="true" className="font-mono text-meta text-fg-muted">
-              &rarr;
-            </span>
-          </a>
-          <p className="mt-3 max-w-prose font-prose text-prose text-fg-muted">
-            {contact.whatsappNote}
-          </p>
-        </div>
+      {/* The WhatsApp route only appears once the number is real. Naming a
+          channel the link does not actually reach would be the one dishonest
+          thing on the page. */}
+      <div className={`mt-14 grid grid-cols-1 gap-8 ${hasRealWhatsapp ? 'sm:grid-cols-2' : ''}`}>
+        {hasRealWhatsapp && (
+          <div className="border-t border-hairline-strong pt-6">
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-baseline gap-3 font-display text-display-m"
+            >
+              <span className="link-draw">WhatsApp</span>
+              <span aria-hidden="true" className="font-mono text-meta text-fg-muted">
+                &rarr;
+              </span>
+            </a>
+            <p className="mt-3 max-w-prose font-prose text-prose text-fg-muted">
+              {contact.whatsappNote}
+            </p>
+          </div>
+        )}
 
         <div className="border-t border-hairline-strong pt-6">
           <a
@@ -55,7 +60,7 @@ export default function Contact() {
             </span>
           </a>
           <p className="mt-3 max-w-prose font-prose text-prose text-fg-muted">
-            {contact.emailNote}
+            {hasRealWhatsapp ? contact.emailNote : contact.emailOnlyNote}
           </p>
           <p className="mt-2 font-mono text-meta text-fg-muted">{site.contact.email}</p>
         </div>
