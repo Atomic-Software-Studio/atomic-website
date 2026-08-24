@@ -10,8 +10,17 @@
  * solutions that scale, the future of.
  *
  * Nothing here is invented. Services, stacks, case studies and the client name
- * all come from the studio's real work. Where a claim would need a number we
- * do not have, it renders as a visible placeholder instead.
+ * all come from the studio's real work.
+ *
+ * ON NUMBERS (2026-08-22, launch): measured figures do not exist yet, so
+ * outcomes are stated qualitatively and truthfully rather than filled with
+ * plausible-looking statistics. A fabricated metric attributed to a named
+ * client is a claim a prospect can act on and a client can be embarrassed by;
+ * a true qualitative outcome costs nothing and ages well.
+ *
+ * When real figures arrive, add them to `metrics` on the case study (see
+ * src/content/case-studies.ts) — the layout is already built for them and
+ * renders nothing while the array is empty.
  */
 
 export const hero = {
@@ -82,7 +91,10 @@ export const work = {
       body: 'Someone sends a WhatsApp message — often audio, often at an hour when nobody is at a desk. The system transcribes it, works out what was actually being asked, checks the calendar, books the slot, and replies. No form, no callback, no queue.',
       stack: ['n8n', 'OpenAI', 'WhatsApp Cloud API', 'Google Cloud'],
       outcomeLabel: 'Outcome',
-      outcome: '[NEEDS REAL DATA: bookings handled, response time, period covered]',
+      // Qualitative and true, pending measured figures. See the note at the
+      // top of this file about why no number is invented here.
+      outcome:
+        'Booking runs end to end with nobody in the loop, including outside working hours and when the request arrives as audio.',
     },
     {
       slug: 'multi-client-platform',
@@ -91,7 +103,8 @@ export const work = {
       body: 'Each client’s workflows, credentials and data sit behind their own walls, so a change made for one can never reach another. Onboarding a client is a provisioning step rather than a rebuild, which is the difference between running a platform and maintaining a pile of one-offs.',
       stack: ['n8n', 'Docker', 'Meta Apps', 'WhatsApp Cloud API'],
       outcomeLabel: 'Outcome',
-      outcome: '[NEEDS REAL DATA: tenants running, uptime, onboarding time]',
+      outcome:
+        'A change or a failure in one client environment has no path into another, and onboarding a new client is a provisioning step rather than a rebuild.',
     },
   ],
 } as const
@@ -148,6 +161,9 @@ export const contact = {
     'Tell us what the system needs to do and what currently happens instead. If we are the right studio for it we will say so, and if we are not we will usually know who is.',
   whatsappNote: 'Fastest way in — fitting, given how much of what we build lives there.',
   emailNote: 'If you would rather write it all down first.',
+  // Used when WhatsApp is not yet live, so the single remaining route does not
+  // read as the fallback option.
+  emailOnlyNote: 'Tell us what the system needs to do. We reply to everything.',
   founderNote: 'Atomic is led by Daniel Ramirez in Medellín, Colombia.',
 } as const
 

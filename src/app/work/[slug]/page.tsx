@@ -5,7 +5,7 @@ import Header from '@/components/sections/Header'
 import Footer from '@/components/sections/Footer'
 import ExecutionTrace from '@/components/ExecutionTrace'
 import IsolationDiagram from '@/components/IsolationDiagram'
-import { NeedsData, TagList } from '@/components/primitives/ui'
+import { TagList } from '@/components/primitives/ui'
 import { caseStudies, caseStudyList } from '@/content/case-studies'
 
 type Params = { params: Promise<{ slug: string }> }
@@ -164,9 +164,25 @@ export default async function CaseStudyPage({ params }: Params) {
 
               <div className="mt-16 border-t border-hairline-strong pt-8">
                 <h2 className="font-mono text-micro text-fg-muted uppercase">Outcome</h2>
-                <p className="mt-4">
-                  <NeedsData>{study.outcome}</NeedsData>
-                </p>
+                <p className="mt-4 max-w-prose font-prose text-prose-l text-fg">{study.outcome}</p>
+
+                {/* Renders nothing until measured figures exist, so the first
+                    number added is a content change and not a layout change. */}
+                {study.metrics.length > 0 && (
+                  <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
+                    {study.metrics.map((metric) => (
+                      <div key={metric.label}>
+                        <dt className="sr-only">{metric.label}</dt>
+                        <dd className="font-display text-display-m text-accent tabular-nums">
+                          {metric.value}
+                        </dd>
+                        <p aria-hidden="true" className="mt-2 font-mono text-micro text-fg-muted uppercase">
+                          {metric.label}
+                        </p>
+                      </div>
+                    ))}
+                  </dl>
+                )}
               </div>
             </div>
           </section>

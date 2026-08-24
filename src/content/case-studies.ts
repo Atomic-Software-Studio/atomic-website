@@ -3,8 +3,11 @@
  *
  * Both studies are real and deployed. The pipelines and isolation model
  * described here are read from the studio's own n8n canvases and deployment
- * setup. Every number that would constitute a claim is a visible placeholder
- * until the founder supplies it — see docs/redesign-brief.md §7.
+ * setup.
+ *
+ * Outcomes are stated qualitatively because measured figures do not exist yet.
+ * Every sentence in an `outcome` is defensible from the system as built. When
+ * numbers arrive they go in `metrics`, which renders nothing while empty.
  */
 
 export type CaseStudy = {
@@ -17,7 +20,17 @@ export type CaseStudy = {
   approach: { name: string; body: string }[]
   handles: string[]
   stack: { group: string; items: string[] }[]
+  /** Stated qualitatively and truthfully while measured figures do not exist. */
   outcome: string
+  /**
+   * Measured results. Empty until real figures exist — the section renders
+   * nothing rather than showing an empty state, so adding the first number is
+   * a content change and not a layout change.
+   *
+   * Example once measured:
+   *   metrics: [{ value: '1,200+', label: 'bookings handled' }]
+   */
+  metrics: { value: string; label: string }[]
   next: { slug: string; name: string }
 }
 
@@ -66,7 +79,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       { group: 'Channel', items: ['WhatsApp Cloud API'] },
       { group: 'Infrastructure', items: ['Google Cloud'] },
     ],
-    outcome: '[NEEDS REAL DATA: bookings handled, median response time, period covered]',
+    outcome:
+      'Booking runs end to end with nobody in the loop. A request that arrives as a voice note at eleven at night is transcribed, understood, checked against the calendar and confirmed on the same thread — with no queue for someone to work through the next morning.',
+    metrics: [],
     next: { slug: 'multi-client-platform', name: 'Multi-client automation platform' },
   },
 
@@ -109,7 +124,9 @@ export const caseStudies: Record<string, CaseStudy> = {
       { group: 'Channel', items: ['Meta Apps', 'WhatsApp Cloud API'] },
       { group: 'Infrastructure', items: ['Docker'] },
     ],
-    outcome: '[NEEDS REAL DATA: tenants running, uptime, time to onboard a new client]',
+    outcome:
+      'A change or a failure inside one client environment has no path into another. Onboarding a client is a provisioning step from a known-good definition rather than a rebuild, so the cost of the tenth looks like the cost of the second.',
+    metrics: [],
     next: { slug: 'appointment-automation', name: 'Appointment automation' },
   },
 }

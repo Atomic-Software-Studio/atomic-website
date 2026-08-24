@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Section from '@/components/primitives/Section'
 import Reveal from '@/components/primitives/Reveal'
-import { NeedsData, TagList } from '@/components/primitives/ui'
+import { TagList } from '@/components/primitives/ui'
 import { work } from '@/content/home'
 
 /**
@@ -78,8 +78,8 @@ export default function Work() {
                   <dt className="font-mono text-micro text-fg-muted uppercase">
                     {item.outcomeLabel}
                   </dt>
-                  <dd className="mt-3">
-                    <NeedsData>{item.outcome}</NeedsData>
+                  <dd className="mt-3 max-w-prose font-prose text-prose text-fg-muted">
+                    {item.outcome}
                   </dd>
                 </div>
               </dl>

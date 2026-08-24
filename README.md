@@ -22,23 +22,46 @@ npm run dev          # http://localhost:3000
 
 ---
 
-## Before launch
-
-The site ships with **visible** placeholders rather than invented content. Run:
+## Two values still to set
 
 ```bash
 npm run check:placeholders
 ```
 
-Everything it lists needs a real value. The two config placeholders live in `src/lib/site.ts`:
+The site is **live and honest with both still unset** — it degrades rather than breaking — but it
+is not at full strength until they are real. Both live in `src/lib/site.ts`:
 
-- `contact.whatsappNumber` — currently `3000000000`
-- `social.linkedin` — currently the generic `linkedin.com`
+| Value | Current | What the site does meanwhile |
+|---|---|---|
+| `contact.whatsappNumber` | `3000000000` | Primary CTA falls back to `mailto:`, and the Contact section drops the WhatsApp column entirely rather than naming a channel the link doesn't reach |
+| `social.linkedin` | generic `linkedin.com` | The LinkedIn link is hidden from the footer |
 
-The rest are `[NEEDS REAL DATA: …]` slots that render in the page, so they cannot be forgotten.
+**Set the real value and everything switches back on by itself** — the guards in `src/lib/site.ts`
+compare against the known placeholder, so no component needs editing.
 
-The design rationale for shipping gaps visibly rather than hiding them is in
-[`docs/redesign-brief.md`](docs/redesign-brief.md) §7.
+> `3000000000` is a plausible Colombian mobile. Publishing it live would have sent real enquiries to
+> a stranger, which is why the fallback exists rather than a note-to-self.
+
+## On numbers
+
+There are none on the site, and that is deliberate.
+
+Measured figures don't exist yet, so case-study outcomes are stated **qualitatively and truthfully**
+instead of being filled with plausible statistics. A fabricated metric attributed to a named client
+is something a prospect can act on and a client can be embarrassed by; a true qualitative outcome
+costs nothing and ages well.
+
+The execution trace makes its argument from real node names and their real order. It carried an
+`elapsed` column during development; rather than fill it with invented latencies it was removed
+until a run is exported — a column of made-up numbers would weaken the exact claim it decorates.
+
+**When real figures arrive:**
+
+- Case-study results → `metrics: [{ value: '1,200+', label: 'bookings handled' }]` in
+  `src/content/case-studies.ts`. The layout is already built and renders nothing while empty, so the
+  first number is a content change, not a layout change.
+- Trace timings → re-add the `elapsed` column in `src/components/ExecutionTrace.tsx`; the removal
+  is commented in place with what to restore.
 
 ---
 
